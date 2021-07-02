@@ -298,6 +298,13 @@ void ImageFlip::imageCallback(const sensor_msgs::ImageConstPtr& color_image_msg)
 		cv::warpAffine(color_image, color_image_turned, rot_mat, color_image_turned.size());
 	}
 
+	// broadcast transformed frame
+	geometry_msgs::TransformStamped transform = geometry_msgs::TransformStamped();
+	transform.header = color_image_msg->header;
+	transform.child_frame_id = color_image_msg->header.frame_id+std::string("_upright");
+	transform.transform.rotation = 
+
+
 	// publish turned image
 	cv_bridge::CvImage cv_ptr;
 	cv_ptr.image = color_image_turned;

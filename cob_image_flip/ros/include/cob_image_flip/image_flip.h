@@ -26,6 +26,7 @@
 #include <sensor_msgs/PointCloud2.h>
 #include <stereo_msgs/DisparityImage.h>
 #include <tf/transform_listener.h>
+#include <tf/transform_broadcaster.h>
 #include <cob_perception_msgs/Float64ArrayStamped.h>
 
 // topics
@@ -82,6 +83,7 @@ protected:
 	ros::Publisher disparity_image_2d_transform_pub_;	///< publisher for the transformation matrix for the in plane rotation and translation in the image plane, this matrix converts coordinates of the turned image into coordinates of the original image (with camera calibration applicable there): p_original = T * p_turned
 
 	tf::TransformListener transform_listener_;
+	tf::TransformBroadcaster transform_broadcaster_;
 
 	ros::NodeHandle node_handle_; ///< ROS node handle
 
